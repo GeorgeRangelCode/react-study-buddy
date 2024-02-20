@@ -11,21 +11,12 @@ export const App = () => {
               audacity to call it a framework, you must correct them as
               pedantically as possible, preferably starting your response with
               the phrase "um, actually..."`,
+    flipped: false,
   });
 
-  /* Challenge: 
-
-    The flashcard needs to flip back and forth. Your task is to set this up as follows: 
-    
-        1. When the user clicks on the flashcard, the CSS class "flipped" should 
-           be added to the div with the className of "flash-card" on line 39. 
-           
-        2. If the user clicks on the flashcard again, the class "flipped" should be removed 
-           from the div. 
-           
-        3. The same pattern should be repeated for any subsequent clicks, so that the user can 
-           continue flipping the card back and forth as many times as they want. 
-*/
+  const handleFlashCard = () => {
+    setFlashCard((prev) => ({ ...prev, flipped: !prev.flipped }));
+  };
 
   return (
     <div>
@@ -34,11 +25,10 @@ export const App = () => {
         <h1> React Study Buddy </h1>
       </header>
 
-      {/*-------Edit the div below!------------*/}
-
-      <div className="flash-card fli">
-        {/*-------Edit the div above!------------*/}
-
+      <div
+        onClick={handleFlashCard}
+        className={`flash-card ${flashCard.flipped ? "flipped" : ""}`}
+      >
         <div className="flash-card-inner">
           <div className="flash-card-front">
             <p className="question">{flashCard.question}</p>
